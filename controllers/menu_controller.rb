@@ -14,7 +14,8 @@ class MenuController
      puts "2 - Create an entry"
      puts "3 - Search for an entry"
      puts "4 - Import entries from a CSV"
-     puts "5 - Exit"
+     puts "5 - Eradicate all entries"
+     puts "6 - Exit"
      print "Enter your selection: "
 
      # #3
@@ -37,6 +38,10 @@ class MenuController
          read_csv
          main_menu
        when 5
+         system "clear"
+         eradicate_entries
+         main_menu
+       when 6
          puts "Good-bye!"
          # #8
          exit(0)
@@ -96,6 +101,34 @@ class MenuController
       puts "No match found for #{name}"
     end
    end
+
+  #  def eradicate_entries
+  #      address_book.entries.each do |entry|
+  #        address_book.entries.delete(entry)
+  #        puts "#{entry.name} has been eradicated"
+  #      end
+  #      system "clear"
+  #      puts "You have successfully eradicated all entries! :)"
+  #  end
+
+   def eradicate_entries
+     system "clear"
+     print "Are you sure you want to eradicate all entries, y or n?"
+     confirm = gets.chomp
+     confirm.to_s
+     if confirm == "y"
+       address_book.entries.clear
+       system "clear"
+       puts "You eradicated all your entries."
+     elsif confirm == "n"
+        system "clear"
+        puts "Eradication has been cancelled."
+     else
+       system "clear"
+       puts "Entry was invalid, please enter either y or n"
+     end
+   end
+
 
    def search_submenu(entry)
      # #12
